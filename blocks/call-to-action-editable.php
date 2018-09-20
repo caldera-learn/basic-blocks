@@ -27,6 +27,7 @@ add_action('init', function () {
             'wp-blocks',
             'wp-i18n',
             'wp-element',
+            'wp-components'
         ),
         filemtime("$dir/$index_js")
     );

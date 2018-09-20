@@ -16,7 +16,9 @@
 	var __ = wp.i18n.__;
 
 
-	function content(props){
+	var TextControl = wp.components.TextControl;
+
+	function content(attributes){
 		return el(
 			'div',
 			{},
@@ -24,14 +26,14 @@
 				el(
 					'p',
 					{},
-					__('Thanks for reading my post about Gutenberg!')
+					attributes.text
 				),
 				el(
 					'a',
 					{
-						href: 'https://JoshPress.net'
+						href: attributes.link
 					},
-					__('Learn More About Gutenberg Here')
+					attributes.linkText
 				)
 			]
 		);
@@ -62,6 +64,28 @@
 			html: false,
 		},
 
+		attributes: {
+			text: {
+				type: 'string',
+				source: 'text',
+				selector: 'p',
+				default: 'Thanks For Reading!'
+			},
+			linkText:{
+				type: 'string',
+				source: 'text',
+				selector: 'a',
+				default: 'Learn More Here.'
+			},
+			link:{
+				type: 'string',
+				source: 'attribute',
+				selector: 'a',
+				attribute: 'href',
+				default: 'https://joshpress.net'
+			}
+		},
+
 		/**
 		 * The edit function describes the structure of your block in the context of the editor.
 		 * This represents what the editor will render when the block is used.
@@ -71,7 +95,72 @@
 		 * @return {Element}       Element to render.
 		 */
 		edit: function( props ) {
-			return content(props);
+			var attributes = props.attributes;
+			if( props.isSelected ){
+				/**
+				 * Callback when text changes to update attribute
+				 * @param newValue
+				 */
+				function onChangeText(newValue){
+					props.setAttributes({
+						text: newValue
+					});
+				}
+				/**
+				 * Callback when linkText changes to update attribute
+				 * @param newValue
+				 */
+				function onChangeLinkText(newValue){
+					props.setAttributes({
+						linkText: newValue
+					});
+				}
+				/**
+				 * Callback when link changes to update attribute
+				 * @param newValue
+				 */
+				function onChangeLink(newValue){
+					props.setAttributes({
+						link: newValue
+					});
+				}
+				return el(
+					'div',
+					{},
+					[
+						el(
+							TextControl,
+							{
+								label: __( 'Call To Action Text' ),
+								value: attributes.text,
+								help: 'First Line Of Text',
+								onChange: onChangeText
+							},
+						),
+						el(
+							TextControl,
+							{
+								label: __( 'Link Text' ),
+								value: attributes.linkText,
+								help: 'Second Line Of Text',
+								onChange: onChangeLinkText
+							},
+						),
+						el(
+							TextControl,
+							{
+								label: __( 'Link Url' ),
+								value: attributes.link,
+								type: 'url',
+								help: 'The Link For The Second Line Of Text',
+								onChange: onChangeLink
+
+							},
+						),
+					]
+				);
+			}
+			return content(attributes);
 		},
 
 		/**
@@ -81,8 +170,8 @@
 		 *
 		 * @return {Element}       Element to render.
 		 */
-		save: function() {
-			return content(props);
+		save: function(props) {
+			return content(props.attributes);
 		}
 	} );
 } )(

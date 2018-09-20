@@ -16,6 +16,32 @@
 	var __ = wp.i18n.__;
 
 	/**
+	 * One function to generate the same content in edit/save
+	 *
+	 * @return {*}
+	 */
+	function content(){
+		return el(
+			'div',
+			{},
+			[
+				el(
+					'p',
+					{},
+					__('Thanks for reading my post about Gutenberg!')
+				),
+				el(
+					'a',
+					{
+						href: 'https://JoshPress.net'
+					},
+					__('Learn More About Gutenberg Here')
+				)
+			]
+		);
+	}
+
+	/**
 	 * Every block starts by registering a new block type definition.
 	 * @see https://wordpress.org/gutenberg/handbook/block-api/
 	 */
@@ -49,11 +75,7 @@
 		 * @return {Element}       Element to render.
 		 */
 		edit: function( props ) {
-			return el(
-				'p',
-				{ className: props.className },
-				__( 'Thanks for reading my post about Gutenberg!' )
-			);
+			return content();
 		},
 
 		/**
@@ -64,11 +86,7 @@
 		 * @return {Element}       Element to render.
 		 */
 		save: function() {
-			return el(
-				'p',
-				{},
-				__( 'Thanks for reading my post about Gutenberg!' )
-			);
+			return content();
 		}
 	} );
 } )(

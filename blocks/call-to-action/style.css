@@ -9,3 +9,8 @@
 	color: #fff;
 	padding: 2px;
 }
+
+.wp-block-caldera-learn-basic-blocks-call-to-action a {
+	color: white;
+	border-bottom: 1px dotted white;
+}

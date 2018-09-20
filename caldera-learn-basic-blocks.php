@@ -13,3 +13,4 @@
  */
 
 include_once __DIR__ .'/blocks/call-to-action.php';
+include_once __DIR__ .'/blocks/call-to-action-editable.php';

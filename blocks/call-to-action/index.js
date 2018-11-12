@@ -1,95 +1,76 @@
+import {createElement} from '@wordpress/element';
+import {__} from '@wordpress/i18n';
+import {registerBlockType} from '@wordpress/blocks';
 
-( function( wp ) {
+
+/**
+ * One function to generate the same content in edit/save
+ *
+ * @return {*}
+ */
+function content() {
+	return el(
+		'div',
+		{},
+		[
+			el(
+				'p',
+				{},
+				__('Thanks for reading my post about Gutenberg!')
+			),
+			el(
+				'a',
+				{
+					href: 'https://JoshPress.net'
+				},
+				__('Learn More About Gutenberg Here')
+			)
+		]
+	);
+}
+
+
+registerBlockType('caldera-learn-basic-blocks/call-to-action', {
 	/**
-	 * Registers a new block provided a unique name and an object defining its behavior.
-	 * @see https://github.com/WordPress/gutenberg/tree/master/blocks#api
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
 	 */
-	var registerBlockType = wp.blocks.registerBlockType;
-	/**
-	 * Returns a new element of given type. Element is an abstraction layer atop React.
-	 * @see https://github.com/WordPress/gutenberg/tree/master/element#element
-	 */
-	var el = wp.element.createElement;
-	/**
-	 * Retrieves the translation of text.
-	 * @see https://github.com/WordPress/gutenberg/tree/master/i18n#api
-	 */
-	var __ = wp.i18n.__;
+	title: __('Call To Action'),
 
 	/**
-	 * One function to generate the same content in edit/save
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'widgets',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 * @see https://wordpress.org/gutenberg/handbook/block-edit-save/#edit
 	 *
-	 * @return {*}
+	 * @param {Object} [props] Properties passed from the editor.
+	 * @return {Element}       Element to render.
 	 */
-	function content(){
-		return el(
-			'div',
-			{},
-			[
-				el(
-					'p',
-					{},
-					__('Thanks for reading my post about Gutenberg!')
-				),
-				el(
-					'a',
-					{
-						href: 'https://JoshPress.net'
-					},
-					__('Learn More About Gutenberg Here')
-				)
-			]
-		);
-	}
+	edit: function (props) {
+		return content();
+	},
 
 	/**
-	 * Every block starts by registering a new block type definition.
-	 * @see https://wordpress.org/gutenberg/handbook/block-api/
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by Gutenberg into `post_content`.
+	 * @see https://wordpress.org/gutenberg/handbook/block-edit-save/#save
+	 *
+	 * @return {Element}       Element to render.
 	 */
-	registerBlockType( 'caldera-learn-basic-blocks/call-to-action', {
-		/**
-		 * This is the display title for your block, which can be translated with `i18n` functions.
-		 * The block inserter will show this name.
-		 */
-		title: __( 'Call To Action' ),
-
-		/**
-		 * Blocks are grouped into categories to help users browse and discover them.
-		 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
-		 */
-		category: 'widgets',
-
-		/**
-		 * Optional block extended support features.
-		 */
-		supports: {
-			// Removes support for an HTML mode.
-			html: false,
-		},
-
-		/**
-		 * The edit function describes the structure of your block in the context of the editor.
-		 * This represents what the editor will render when the block is used.
-		 * @see https://wordpress.org/gutenberg/handbook/block-edit-save/#edit
-		 *
-		 * @param {Object} [props] Properties passed from the editor.
-		 * @return {Element}       Element to render.
-		 */
-		edit: function( props ) {
-			return content();
-		},
-
-		/**
-		 * The save function defines the way in which the different attributes should be combined
-		 * into the final markup, which is then serialized by Gutenberg into `post_content`.
-		 * @see https://wordpress.org/gutenberg/handbook/block-edit-save/#save
-		 *
-		 * @return {Element}       Element to render.
-		 */
-		save: function() {
-			return content();
-		}
-	} );
-} )(
-	window.wp
-);
+	save: function () {
+		return content();
+	}
+});

@@ -5,7 +5,7 @@ Example code from [Josh Pollock](https://JoshPress.net)'s talks and workshops ab
 
 * [WordCamp Pittsburgh 2018](https://calderaforms.com/wordcamp-pittsburgh-2018/)
 * [React Boston 2018](https://calderaforms.com/react-boston-2018/)
-* [php[World] 2018 with Zac Gordon](https://calderaforms.com/react-boston-2018/)
+* [php[World] 2018](https://hiroy.club) with [Zac Gordon](https://javaScriptforwp.com?ref=636)
 
 ## Want To Learn More About Gutenberg?
 * [Gutenebrg Handbook](https://wordpress.org/gutenberg/handbook/)
@@ -27,8 +27,8 @@ This repo has two blocks:
  * Clone from Github
     * `git clone git@github.com:caldera-learn/basic-blocks.git` 
  * Switch to directory
-    `cd basic-blocks`  
+    * `cd basic-blocks`  
  * Install
-    `npm install`
+    * `npm install`
  * Start watcher to compile JS
-    `npm run dev`
+    * `npm run dev`

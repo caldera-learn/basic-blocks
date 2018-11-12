@@ -2,6 +2,7 @@ import {createElement} from '@wordpress/element';
 import {__} from '@wordpress/i18n';
 import {registerBlockType} from '@wordpress/blocks';
 import {TextControl} from '@wordpress/components';
+import {InspectorControls} from '@wordpress/editor';
 
 
 /**
@@ -63,20 +64,22 @@ registerBlockType('caldera-learn-basic-blocks/call-to-action-editable', {
 
 			return(
 				<div>
+					<InspectorControls>
+						<TextControl
+							label={'Link Text' }
+							value={linkText}
+							onChange={onChangeLinkText}
+						/>
+						<TextControl
+							label={'Link Url' }
+							value={link}
+							onChange={onChangeLink}
+						/>
+					</InspectorControls>
 					<TextControl
 						label={'Call To Action Text' }
 						value={text}
 						onChange={onChangeText}
-					/>
-					<TextControl
-						label={'Link Text' }
-						value={linkText}
-						onChange={onChangeLinkText}
-					/>
-					<TextControl
-						label={'Link Url' }
-						value={link}
-						onChange={onChangeLink}
 					/>
 				</div>
 			)

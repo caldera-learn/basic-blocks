@@ -20,7 +20,7 @@ add_action( 'init', function() {
     }
     $dir = dirname( __FILE__ );
 
-    $index_js = 'call-to-action/index.js';
+    $index_js = 'call-to-action/build/index.js';
     wp_register_script(
         'call-to-action-block-editor',
         plugins_url( $index_js, __FILE__ ),

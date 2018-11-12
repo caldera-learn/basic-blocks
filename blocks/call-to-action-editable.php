@@ -19,7 +19,7 @@ add_action('init', function () {
     }
     $dir = dirname(__FILE__);
 
-    $index_js = 'call-to-action-editable/index.js';
+    $index_js = 'call-to-action-editable/build/index.js';
     wp_register_script(
         'call-to-action-editable-block-editor',
         plugins_url($index_js, __FILE__),

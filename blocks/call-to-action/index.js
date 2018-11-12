@@ -9,23 +9,11 @@ import {registerBlockType} from '@wordpress/blocks';
  * @return {*}
  */
 function content() {
-	return el(
-		'div',
-		{},
-		[
-			el(
-				'p',
-				{},
-				__('Thanks for reading my post about Gutenberg!')
-			),
-			el(
-				'a',
-				{
-					href: 'https://JoshPress.net'
-				},
-				__('Learn More About Gutenberg Here')
-			)
-		]
+	return(
+		<div>
+			<p>Thanks For Reading My Post About Gutenberg</p>
+			<a href={'https://JoshPress.net/Gutenberg'}>Learn More About Gutenberg Here</a>
+		</div>
 	);
 }
 

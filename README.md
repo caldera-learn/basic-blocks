@@ -5,10 +5,10 @@ Example code from [Josh Pollock](https://JoshPress.net)'s talks and workshops ab
 
 * [WordCamp Pittsburgh 2018](https://calderaforms.com/wordcamp-pittsburgh-2018/)
 * [React Boston 2018](https://calderaforms.com/react-boston-2018/)
-* [php[World] 2018](https://hiroy.club) with [Zac Gordon](https://javaScriptforwp.com?ref=636)
+* [php[World] 2018](https://CalderaForms.com/phpworld-2018/) All day workshop with [Zac Gordon](https://javaScriptforwp.com?ref=636)
 
 ## Want To Learn More About Gutenberg?
-* [Gutenebrg Handbook](https://wordpress.org/gutenberg/handbook/)
+* [Gutenberg Handbook](https://wordpress.org/gutenberg/handbook/)
 * [Check out Zac’s Gutenberg development course](https://gutenberg.courses/development/?ref=636)
 * [My big list of Gutenberg -related talks for developers](https://joshpress.net/a-list-of-developer-facing-talks-about-the-new-wordpress-gutenberg-block-editor/)
 * [Gutenberg Block Basics - Video WordCamp Jacksonville 2018](https://wordpress.tv/2018/07/15/josh-pollock-gutenberg-block-basics/)

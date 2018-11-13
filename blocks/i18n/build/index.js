@@ -94,7 +94,7 @@ this["cl"] = this["cl"] || {}; this["cl"]["i18n"] =
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack://cl.%5Bname%5D/./blocks/i18n/index.js?");
+eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Jsb2Nrcy9pMThuL2luZGV4LmpzLmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./blocks/i18n/index.js\n");
 
 /***/ })
 

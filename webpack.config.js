@@ -22,13 +22,20 @@ const extractConfig = {
 			loader: "sass-loader",
 			query: {
 				outputStyle:
-					"production" === process.env.NODE_ENV ? "compressed" : "nested"
+					"production" === process.env.NODE_ENV
+						? "compressed"
+						: "nested"
 			}
 		}
 	]
 };
 
-const entryPointNames = ["call-to-action", "call-to-action-editable", "i18n"];
+const entryPointNames = [
+	"call-to-action",
+	"call-to-action-editable",
+	"call-to-action-editable-advanced",
+	"i18n"
+];
 
 const externals = {
 	react: "React",
@@ -72,6 +79,7 @@ const config = {
 	resolve: {
 		modules: [__dirname, "node_modules"]
 	},
+	devtool: "eval-source-map",
 	module: {
 		rules: [
 			{

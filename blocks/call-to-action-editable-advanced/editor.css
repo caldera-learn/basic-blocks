@@ -1,0 +1,9 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-caldera-learn-basic-blocks-call-to-action-editable {
+	border: 1px dotted #f00;
+}

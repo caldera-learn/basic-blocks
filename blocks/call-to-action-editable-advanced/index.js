@@ -1,231 +1,124 @@
 import { createElement } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { registerBlockType } from "@wordpress/blocks";
-import { TextControl, Button, BaseControl } from "@wordpress/components";
-import {
-	RichText,
-	InspectorControls,
-	AlignmentToolbar,
-	ColorPalette
-} from "@wordpress/editor";
-
-/**
- * Create style prop for content
- * @param styleProps
- * @return {{textAlign: string}}
- */
-const createStyle = styleProps => {
-	return {
-		textAlign: styleProps.hasOwnProperty("align")
-			? styleProps.align
-			: "left",
-		backgroundColor: styleProps.hasOwnProperty("backgroundColor")
-			? styleProps.backgroundColor
-			: ""
-	};
-};
-
-/**
- * One function to generate the same content in edit/save
- *
- * @return {*}
- */
-function Content({ attributes }) {
-	const {
-		text,
-		buttonText,
-		link,
-		align,
-		linkColor,
-		textColor,
-		backgroundColor
-	} = attributes;
-	return (
-		<div
-			style={createStyle({
-				align,
-				backgroundColor
-			})}
-		>
-			<p
-				style={{
-					color: textColor
-				}}
-			>
-				{text}
-			</p>
-			<a
-				href={link}
-				style={{
-					color: linkColor
-				}}
-			>
-				{buttonText}
-			</a>
-		</div>
-	);
-}
-
-const colors = [
-	{ name: "Green", color: "#a3bf61" },
-	{ name: "Orange", color: "#ff7e30" },
-	{ name: "Dark Grey", color: "#3a3a3c" },
-	{ name: "White", color: "#ffffff;" },
-	{ name: "Black", color: "#000000;" }
-];
-
-const ColorControl = props => (
-	<BaseControl label={props.label}>
-		<ColorPalette
-			colors={colors}
-			value={props.value}
-			onChange={props.onChange}
-		/>
-	</BaseControl>
-);
+import { TextControl, Button } from "@wordpress/components";
+import { RichText, MediaUpload } from "@wordpress/editor";
 
 registerBlockType(
 	"caldera-learn-basic-blocks/call-to-action-editable-advanced",
 	{
 		title: __("Call To Action Editable Advanced"),
-
 		category: "widgets",
-
 		supports: {
 			html: false
 		},
-
 		attributes: {
+			title: {
+				type: "string",
+				source: "text",
+				selector: ".entry-title",
+				default: "Block Title"
+			},
 			message: {
 				source: "html",
 				selector: ".my-text",
 				default: "Thanks For Reading!"
 			},
-			buttonText: {
-				type: "string",
-				source: "text",
-				selector: "button",
-				default: "Edit Me!"
-			},
-			link: {
+			imgURL: {
 				type: "string",
 				source: "attribute",
-				selector: "a",
-				attribute: "href",
-				default: "https://joshpress.net"
+				attribute: "src",
+				selector: "img"
 			},
-			align: {
+			imgID: {
+				type: "number"
+			},
+			imgAlt: {
 				type: "string",
-				default: "left"
-			},
-			textColor: {
-				type: "string"
-			},
-			backgroundColor: {
-				type: "string"
-			},
-			linkColor: {
-				type: "string"
+				source: "attribute",
+				attribute: "alt",
+				selector: "img"
 			}
 		},
 
 		edit({ attributes, setAttributes, isSelected, className }) {
-			const {
-				message,
-				buttonText,
-				link,
-				align,
-				textColor,
-				backgroundColor,
-				linkColor
-			} = attributes;
-
-			const onChangeAlign = align => setAttributes({ align });
-			const onChangeTextColor = textColor => setAttributes({ textColor });
-			const onChangeBackgroundColor = backgroundColor =>
-				setAttributes({ backgroundColor });
-			const onChangeLinkColor = linkColor => setAttributes({ linkColor });
-
-			// if (isSelected) {
-			// 	return (
-			// 		<div>
-			// 			<InspectorControls>
-			// 				<TextControl
-			// 					label={"Link Text"}
-			// 					value={buttonText}
-			// 					onChange={onChangebuttonText}
-			// 				/>
-			// 				<TextControl
-			// 					label={"Link Url"}
-			// 					value={link}
-			// 					onChange={onChangeLink}
-			// 				/>
-			// 				<ColorControl
-			// 					label={"Text Color"}
-			// 					onChange={onChangeTextColor}
-			// 					value={textColor}
-			// 				/>
-			// 				<ColorControl
-			// 					label={"Link Color"}
-			// 					onChange={onChangeLinkColor}
-			// 					value={linkColor}
-			// 				/>
-			// 				<ColorControl
-			// 					label={"Background Color"}
-			// 					onChange={onChangeBackgroundColor}
-			// 					value={backgroundColor}
-			// 				/>
-			// 			</InspectorControls>
-			// 			<AlignmentToolbar
-			// 				value={align}
-			// 				onChange={onChangeAlign}
-			// 			/>
-			// 			<TextControl
-			// 				label={"Call To Action Text"}
-			// 				value={text}
-			// 				onChange={onChangeText}
-			// 				style={createStyle({ align })}
-			// 			/>
-			// 		</div>
-			// 	);
-			// }
-
+			const { title, message, imgID, imgURL, imgAlt } = attributes;
+			const onSelectImage = img => {
+				setAttributes({
+					imgID: img.id,
+					imgURL: img.url,
+					imgAlt: img.alt
+				});
+			};
+			const onRemoveImage = () => {
+				setAttributes({
+					imgID: null,
+					imgURL: null,
+					imgAlt: null
+				});
+			};
 			return (
 				<div className={className}>
-					<InspectorControls>
-						<TextControl
-							label={"Link Text"}
-							value={buttonText}
-							onChange={buttonText =>
-								setAttributes({ buttonText })
-							}
+					{isSelected ? (
+						<h3 className="entry-title">
+							<TextControl
+								label={"Title"}
+								value={title}
+								onChange={title => setAttributes({ title })}
+							/>
+						</h3>
+					) : (
+						<h3>{title}</h3>
+					)}
+					{!imgID ? (
+						<MediaUpload
+							onSelect={onSelectImage}
+							type="image"
+							value={imgID}
+							render={({ open }) => (
+								<Button
+									isPrimary
+									className={"button button-large"}
+									onClick={open}
+								>
+									{__(" Upload Image")}
+								</Button>
+							)}
 						/>
-						<TextControl
-							label={"Link Url"}
-							value={link}
-							onChange={link => setAttributes({ link })}
-						/>
-					</InspectorControls>
+					) : (
+						<p class="image-wrapper">
+							<img src={imgURL} alt={imgAlt} />
+							{isSelected && (
+								<Button
+									isPrimary
+									className="remove-image"
+									onClick={onRemoveImage}
+								>
+									{__("Remove Image")}
+								</Button>
+							)}
+						</p>
+					)}
 					<RichText
-						multiline={true}
+						multiline
 						className="my-text"
+						placeholder="Write message here.."
 						onChange={message => setAttributes({ message })}
 						value={message}
 					/>
-					<Button isDefault>{attributes.buttonText}</Button>
 				</div>
 			);
 		},
 
 		save({ attributes }) {
+			const { title, message, imgID, imgURL, imgAlt } = attributes;
 			return (
 				<div>
+					<h3 className="entry-title">{title}</h3>
+					<img src={imgURL} alt={imgAlt} />
 					<div className="my-text">
-						<RichText.Content value={attributes.message} />
+						<RichText.Content value={message} />
 					</div>
-					<a href={attributes.link}>
-						<button>{attributes.buttonText}</button>
-					</a>
 				</div>
 			);
 		}

@@ -29,7 +29,7 @@ add_shortcode('cl_post_title', 'caldera_learn_basic_blocks_post_title_shortcode_
  */
 function caldera_learn_basic_blocks_post_title_block_handler($atts)
 {
-	return 'Hello From The Server';
+	return caldera_learn_basic_blocks_post_title($atts[ 'id' ], $atts[ 'heading' ]);
 }
 
 /**

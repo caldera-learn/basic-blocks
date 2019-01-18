@@ -2,7 +2,7 @@ const {registerBlockType} = wp.blocks; //Blocks API
 const {createElement} = wp.element; //React.createElement
 const {__} = wp.i18n; //translation functions
 const {InspectorControls} = wp.editor; //Block inspector wrapper
-const {TextControl,SelectControl} = wp.components; //Block inspector wrapper
+const {TextControl,SelectControl,ServerSideRender} = wp.components; //WordPress form inputs and server-side renderer
 
 registerBlockType( 'caldera-learn-basic-blocks/post-title', {
 	title: __( 'Show a post title' ), // Block title.
@@ -32,8 +32,11 @@ registerBlockType( 'caldera-learn-basic-blocks/post-title', {
 
 		//Display block preview and UI
 		return createElement('div', {}, [
-			//preview will go here
-			createElement( 'div', {}, 'Put Preview here' ),
+			//Preview a block with a PHP render callback
+			createElement( ServerSideRender, {
+				block: 'caldera-learn-basic-blocks/post-title',
+				attributes: attributes
+			} ),
 			//Block inspector
 			createElement( InspectorControls, {},
 				[

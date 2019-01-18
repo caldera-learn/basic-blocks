@@ -14,10 +14,12 @@ Example code from [Josh Pollock](https://JoshPress.net)'s talks and workshops ab
 * [Gutenberg Block Basics - Video WordCamp Jacksonville 2018](https://wordpress.tv/2018/07/15/josh-pollock-gutenberg-block-basics/)
 
 ## How To Install/ Use/ Learn
-This repo has two blocks:
+This repo has three blocks:
 
  * "Call To Action" - A basic static block.
  * "Call To Action Editable" - A static block with editable options.
+ * "Call To Action Editable Advanced" - A static block with editable options and even more controls and WordPress APIs.
+ * "Post Title" - An example of block that replaces a shortcode.
  
  These blocks were made without JSX or any build tools first. Then they were converted to JSX, using webpack. The first commit in the conversion to JSX is [8b01eaffdea8222435d296dd85a3bfef74d5ccfd](https://github.com/caldera-learn/basic-blocks/commit/8b01eaffdea8222435d296dd85a3bfef74d5ccfd)
  

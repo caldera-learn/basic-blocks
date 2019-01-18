@@ -52,5 +52,34 @@ add_action('init', function () {
         'editor_script' => 'call-to-action-editable-block-editor',
         'editor_style' => 'call-to-action-editable-block-editor',
         'style' => 'call-to-action-editable-block',
+		'render_callback' => 'block_2_render',
+		'attributes' => [
+			'text' => [
+				'type' => 'string',
+				'default' => 'Server Side'
+			],
+			'link' => [
+				'type' => 'string',
+				'default' => 'https://joshpress.net'
+			],
+			'linkText' => [
+				'type' => 'string',
+				'default' => 'Click Here'
+			]
+
+		]
     ));
 });
+
+
+function block_2_render($atts){
+	$category = ! empty($atts[ 'category']) ?  $atts[ 'text'] : '';
+	$link = ! empty($atts[ 'link']) ?  $atts[ 'link'] : '';
+	$linkText = ! empty($atts[ 'linkText']) ?  $atts[ 'linkText'] : '';
+
+	$posts = new WP_Query( ['category' => $category ] );
+	$x = "<div>
+			Hi Roy
+		</div>";
+	return $x;
+}

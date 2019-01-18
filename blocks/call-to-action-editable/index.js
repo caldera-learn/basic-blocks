@@ -8,7 +8,8 @@ import {
 import {
 	InspectorControls,
 	AlignmentToolbar,
-	ColorPalette
+	ColorPalette,
+	ServerSideRender
 } from '@wordpress/editor';
 
 /**
@@ -195,16 +196,16 @@ registerBlockType('caldera-learn-basic-blocks/call-to-action-editable', {
 		}
 
 
-		return <Content
-			attributes={attributes}
-		/>
+		return  <ServerSideRender
+			atttibues={attributes}
+			block={'caldera-learn-basic-blocks/call-to-action-editable'}
+		/>;
+
 
 	},
 
 	save({attributes}) {
-		return <Content
-			attributes={attributes}
-		/>
+		return null;
 	}
 });
 

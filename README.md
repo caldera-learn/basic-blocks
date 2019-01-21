@@ -12,6 +12,7 @@ Example code from [Josh Pollock](https://JoshPress.net)'s talks and workshops ab
 * [Check out Zac’s Gutenberg development course](https://gutenberg.courses/development/?ref=636)
 * [My big list of Gutenberg -related talks for developers](https://joshpress.net/a-list-of-developer-facing-talks-about-the-new-wordpress-gutenberg-block-editor/)
 * [Gutenberg Block Basics - Video WordCamp Jacksonville 2018](https://wordpress.tv/2018/07/15/josh-pollock-gutenberg-block-basics/)
+* [How To Convert A Shortcode To Block](https://calderaforms.com/2019/01/convert-shortcode-gutenberg-block/)
 
 ## How To Install/ Use/ Learn
 This repo has three blocks:
@@ -20,6 +21,7 @@ This repo has three blocks:
  * "Call To Action Editable" - A static block with editable options.
  * "Call To Action Editable Advanced" - A static block with editable options and even more controls and WordPress APIs.
  * "Post Title" - An example of block that replaces a shortcode.
+ 	- [Step by Step Guide](https://calderaforms.com/2019/01/convert-shortcode-gutenberg-block/)
  
  These blocks were made without JSX or any build tools first. Then they were converted to JSX, using webpack. The first commit in the conversion to JSX is [8b01eaffdea8222435d296dd85a3bfef74d5ccfd](https://github.com/caldera-learn/basic-blocks/commit/8b01eaffdea8222435d296dd85a3bfef74d5ccfd)
  
